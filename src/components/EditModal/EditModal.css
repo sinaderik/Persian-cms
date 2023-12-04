@@ -1,0 +1,46 @@
+.edit-modal-form{
+    width: 400px;
+    padding: 10px 20px;
+    background-color: var(--white);
+    text-align: center;
+    border-radius: 10px;
+}
+.edit-modal-form h1{
+    font-size: 1.4rem;
+}
+.edit-form-submit{
+    margin-top: 20px;
+    padding: 8px 0px;
+    width: 100px;
+    color: var(--white );
+    background-color: var(--blue);
+    font-size: 1.1rem;
+    border-radius: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.edit-form-submit:hover{
+    background-color: var(--hover);
+    transition: 0.5s;
+}
+.edit-modal-form 
+.close-detail-icon-wrapper{
+    text-align: right;
+}
+
+.edit-products-form-group{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    column-gap: 10px;
+    background-color: #f4f4f4;
+    padding: 0 20px;
+    border-radius: 10px;
+}
+.edit-product-input{
+    all: unset;
+    width: 100%;
+    text-align: right;
+    font-size: 1.1rem;
+    padding: 8px 10px;
+}

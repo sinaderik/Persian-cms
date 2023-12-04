@@ -9,6 +9,8 @@
     --white: #ffffff;
     --white-50: #f0f0f0;
     --blue: #471AAA;
+    --hover: #be2edd;
+    --active:#be2edd;
 }
 
 body {
@@ -16,6 +18,8 @@ body {
     word-spacing: 0.2em;
 }
 
-*, body, html {
+*,
+body,
+html {
     font-family: Lalezar;
 }

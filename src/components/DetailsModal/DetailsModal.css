@@ -1,0 +1,15 @@
+.details-modal{
+    padding: 10px 15px;
+    background-color: var(--white);
+    font-size: 1.3rem;
+}
+.close-detail-icon-wrapper{
+    width: 100%;
+    /* border: 2px solid black; */
+}
+.close-detail-icon-wrapper
+.close-detail-icon{
+    color: brown;
+    cursor: pointer;
+    font-size: 28px;
+}
