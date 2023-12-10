@@ -1,15 +1,16 @@
 import React from 'react'
-import ErrorBox from '../ErrorBox/ErrorBox'
 import AddNewProduct from '../AddNewProduct/AddNewProduct'
 import ProductsTable from '../ProductsTable/ProductsTable'
 import './Products.css'
 
+
 export default function Products() {
+  const api = 'http://localhost:3000/api/products';
+
   return (
     <>
       <AddNewProduct />
-      <ErrorBox message="هیچ محصولی یافت نشد" />
-      <ProductsTable />
+      <ProductsTable api={api} />
     </>
   )
 }

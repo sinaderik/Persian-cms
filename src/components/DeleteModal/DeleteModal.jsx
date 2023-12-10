@@ -6,8 +6,9 @@ import './DeleteModal.css'
 
 export default function DeleteModal({confirmed,rejected}) {
 
-    return ReactDOM.createPortal(
-        <div className='modal-parent active'>
+    function DeleteModalItem(){
+        return(
+            <div className='modal-parent active'>
             <div className='delete-modal' >
                 <h1>
                     <FaInfoCircle className='delete-icon' />
@@ -18,5 +19,9 @@ export default function DeleteModal({confirmed,rejected}) {
                     <button onClick={rejected} className='delete-btn delete-modal-reject-btn'>خیر</button>
                 </div>
             </div>
-        </div>, document.getElementById('modals-parent'))
+        </div>
+        )
+    }
+
+    return ReactDOM.createPortal(<DeleteModalItem /> , document.getElementById('modals-parent'))
 }

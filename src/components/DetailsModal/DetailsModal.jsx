@@ -2,7 +2,8 @@ import React from 'react'
 import { IoMdCloseCircle } from "react-icons/io";
 import './DetailsModal.css'
 
-export default function DetailsModal({close}) {
+export default function DetailsModal({ name, price, count, close }) {
+
     return (
         <div className='modal-parent active'>
             <div className='details-modal'>
@@ -14,15 +15,15 @@ export default function DetailsModal({close}) {
                         <tr>
                             <th>نام</th>
                             <th>قیمت</th>
-                            <th>محبوبیت</th>
+                            <th>موجودی</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>لپ تاپ</td>
-                            <td>1200000</td>
-                            <td>91</td>
+                            <td>{name}</td>
+                            <td>{price.toLocaleString()}</td>
+                            <td>{count}</td>
                         </tr>
                     </tbody>
                 </table>

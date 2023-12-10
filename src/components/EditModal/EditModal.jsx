@@ -46,7 +46,7 @@ export default function EditModal({ children, submit, close }) {
                     </span>
                     <input className='edit-product-input' type="text" placeholder='new title'/>
                 </div>
-
+                
                 <button onClick={(event) => editFormHandler(event)} className='edit-form-submit'>ثبت</button>
             </form>
         </div>

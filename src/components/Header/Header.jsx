@@ -2,7 +2,7 @@ import React from 'react'
 import { FaRegBell } from "react-icons/fa";
 import { CiBrightnessUp } from "react-icons/ci";
 import './Header.css'
-import adminImage from '../../assets/images/sina.jpg'
+import adminImage from '../../assets/img/sina.jpg'
 
 export default function Header() {
   return (
