@@ -7,8 +7,9 @@ import ErrorBox from '../ErrorBox/ErrorBox'
 import { useEffect, useMemo } from 'react'
 import useFetch from '../../../hooks/useFetch'
 import './ProductsTable.css'
+import { json } from 'react-router-dom';
 
-export default function ProductsTable({ api }) {
+export default function ProductsTable({getAllData,allProducts }) {
 
     // const { data, loading, error } = useFetch(api)
     const [deleteId, setDeleteId] = useState(null)
@@ -16,23 +17,14 @@ export default function ProductsTable({ api }) {
     const [showModal, setShowModal] = useState(false);
     const [showDetailModal, setShowDetailModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
-    // state for allProducts
-    const [allProducts, setAllProducts] = useState([])
+ 
     // state for Product detail
     const [productName, setProductName] = useState(null)
     const [productPrice, setProductPrice] = useState(null)
     const [productCount, setProductCount] = useState(null)
+    // state for editing products 
+    const [editProduct, setEditProduct] = useState(null)
 
-
-    useEffect(() => {
-        getAllData()
-    }, [])
-
-    const getAllData = () => {
-        fetch(api)
-            .then((response) => response.json())
-            .then(data => setAllProducts(data))
-    }
 
     const deleteModalHandler = () => {
         setShowModal(true)
@@ -43,8 +35,9 @@ export default function ProductsTable({ api }) {
         setProductPrice(price)
         setShowDetailModal(true)
     }
-    const showEditModalHandler = () => {
+    const showEditModalHandler = (item) => {
         setShowEditModal(true)
+        setEditProduct(item)
     }
 
     const deleteConfirmed = () => {
@@ -63,9 +56,30 @@ export default function ProductsTable({ api }) {
     const closeDetailsModal = () => {
         setShowDetailModal(false)
     }
-    const submitEditForm = (event) => {
+    const submitEditForm = (event, editedItem, id) => {
         event.preventDefault();
-        console.log('edited')
+        fetch(`http://localhost:3000/api/products/${id}`, {
+            method: 'PUT',
+            headers:{
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                id: id,
+                title: editedItem.newName,
+                price: editedItem.newPrice,
+                count: editedItem.newcount,
+                img: editedItem.newImg,
+                popularity: editedItem.newPopularity,
+                sale: editedItem.newSale,
+                colors: editedItem.newColors,
+            })
+        }).then((response) => {
+            if(!response.ok){
+                alert('Something went wrong')
+            }
+            getAllData();
+            setShowEditModal(false)
+        })
     }
     const closeEditForm = () => {
         setShowEditModal(false)
@@ -73,8 +87,6 @@ export default function ProductsTable({ api }) {
 
     return (
         <>
-            {/* {error !== null ? <ErrorBox message="هیچ محصولی یافت نشد" /> : null} */}
-            {/* {loading ? <ErrorBox message="در حال بارگذاری ..." /> : null} */}
             <table className='products-table'>
                 <thead>
                     <tr className='products-table-heading-tr'>
@@ -86,7 +98,7 @@ export default function ProductsTable({ api }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {allProducts.map((item, index) => (
+                    {allProducts.reverse().map((item, index) => (
                         <tr key={item.id} className='products-table-tr'>
                             <td>{index + 1}</td>
                             <td>
@@ -96,13 +108,24 @@ export default function ProductsTable({ api }) {
                             <td>{item.price.toLocaleString()} تومان</td>
                             <td>{item.count}</td>
                             <td>
-                                <button onClick={() => showDetailModalHandler(item.title, item.price, item.count)} className='products-table-btn'>جزییات</button>
+                                <button
+                                    className='products-table-btn'
+                                    onClick={() => showDetailModalHandler(item.title, item.price, item.count)}
+                                >
+                                    جزییات
+                                </button>
                                 <button
                                     onClick={() => {
                                         deleteModalHandler()
                                         setDeleteId(item.id)
-                                    }} className='products-table-btn'>حذف</button>
-                                <button onClick={() => showEditModalHandler()} className='products-table-btn'>ویرایش</button>
+                                    }} className='products-table-btn'>
+                                    حذف
+                                </button>
+                                <button
+                                    onClick={() => showEditModalHandler(item)}
+                                    className='products-table-btn'>
+                                    ویرایش
+                                </button>
                             </td>
                         </tr>
                     ))}
@@ -110,7 +133,7 @@ export default function ProductsTable({ api }) {
             </table>
             {showModal ? <DeleteModal confirmed={deleteConfirmed} rejected={deleteRejected} /> : null}
             {showDetailModal ? <DetailsModal name={productName} price={productPrice} count={productCount} close={closeDetailsModal} /> : null}
-            {showEditModal ? <EditModal submit={submitEditForm} close={closeEditForm}></EditModal> : null}
+            {showEditModal ? <EditModal product={editProduct} submit={submitEditForm} close={closeEditForm}></EditModal> : null}
         </>
     )
 }
