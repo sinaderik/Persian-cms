@@ -9,7 +9,7 @@ import { MdDiscount } from "react-icons/md";
 import { useState } from 'react';
 import './Sidebar.css'
 
-export default function Sidebar() {
+export default function Sidebar({ sidebarIsOpen }) {
 
     const [active, setActive] = useState(1)
 
@@ -18,47 +18,47 @@ export default function Sidebar() {
     }
 
     return (
-        <div className='sidebar'>
+        <div className={sidebarIsOpen ? 'openSidebar' : 'sidebar'}>
             <h1 className='sidebar-title'>پنل کاربری شما</h1>
 
             <ul className='sidebar-links'>
-                <li onClick={()=>activeHandler(1)} className={active === 1? 'active' : null}>
-                <Link to='/'>
-                    <FaHome className="sidebar-icon" />
-                    صفحه اصلی
-                </Link>
-            </li>
-            <li onClick={()=>activeHandler(2)} className={active === 2? 'active' : null}>
-                <Link to="/products">
-                    <FaCartShopping className="sidebar-icon" />
-                    محصولات
-                </Link>
-            </li>
-            <li onClick={()=>activeHandler(3)} className={active === 3? 'active' : null}>
-                <Link to="/comments">
-                    <FaComments className="sidebar-icon" />
-                    کامنت ها
-                </Link>
-            </li>
-            <li onClick={()=>activeHandler(4)} className={active === 4? 'active' : null}>
-                <Link to="/users">
-                    <ImUsers className="sidebar-icon" />
-                    کاربران
-                </Link>
-            </li>
-            <li onClick={()=>activeHandler(5)} className={active === 5? 'active' : null}>
-                <Link to="/orders">
-                    <IoBagHandle className="sidebar-icon" />
-                    سفارشات
-                </Link>
-            </li>
-            <li onClick={()=>activeHandler(6)} className={active === 6? 'active' : null}>
-                <Link to="/offs">
-                    <MdDiscount className="sidebar-icon" />
-                    تخفیف ها
-                </Link>
-            </li>
-        </ul>
+                <li onClick={() => activeHandler(1)} className={active === 1 ? 'active' : null}>
+                    <Link to='/'>
+                        <FaHome className="sidebar-icon" />
+                        صفحه اصلی
+                    </Link>
+                </li>
+                <li onClick={() => activeHandler(2)} className={active === 2 ? 'active' : null}>
+                    <Link to="/products">
+                        <FaCartShopping className="sidebar-icon" />
+                        محصولات
+                    </Link>
+                </li>
+                <li onClick={() => activeHandler(3)} className={active === 3 ? 'active' : null}>
+                    <Link to="/comments">
+                        <FaComments className="sidebar-icon" />
+                        کامنت ها
+                    </Link>
+                </li>
+                <li onClick={() => activeHandler(4)} className={active === 4 ? 'active' : null}>
+                    <Link to="/users">
+                        <ImUsers className="sidebar-icon" />
+                        کاربران
+                    </Link>
+                </li>
+                <li onClick={() => activeHandler(5)} className={active === 5 ? 'active' : null}>
+                    <Link to="/orders">
+                        <IoBagHandle className="sidebar-icon" />
+                        سفارشات
+                    </Link>
+                </li>
+                <li onClick={() => activeHandler(6)} className={active === 6 ? 'active' : null}>
+                    <Link to="/offs">
+                        <MdDiscount className="sidebar-icon" />
+                        تخفیف ها
+                    </Link>
+                </li>
+            </ul>
         </div >
     )
 }

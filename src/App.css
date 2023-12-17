@@ -1,9 +1,30 @@
-.main-container{
+.main-container {
   display: flex;
 }
-.main{
-    flex: 4;
-    padding: 20px;
-    padding-right: 200px;
-    padding-left: 40px;
+
+.main {
+  flex: auto;
+  padding: 20px;
+  padding-right: 200px;
+  padding-left: 40px;
+}
+
+.sidebarHandler {
+  display: none;
+  background: var(--blue);
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  position: fixed;
+  top: 50%;
+  left: 0;
+}
+
+@media(max-width:1100px) {
+  .main {
+    padding-right: 60px;
+  }
+  .sidebarHandler {
+    display: block;
+  }
 }

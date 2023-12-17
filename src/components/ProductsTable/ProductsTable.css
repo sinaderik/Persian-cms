@@ -57,3 +57,20 @@
 .products-table-tr:last-child{
     border-bottom: none;
 }
+
+@media (max-width: 600px) {
+    /* Hide less important columns */
+    /* .table td:nth-child(3), .table th:nth-child(3),
+    .table td:nth-child(4), .table th:nth-child(4) {
+        display: none;
+    } */
+
+    /* Stack columns on small screens */
+     .table td, .table th {
+        display: block;
+    }
+
+    .table th {
+        text-align: left;
+    }
+}
