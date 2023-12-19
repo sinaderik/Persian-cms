@@ -25,6 +25,7 @@ export default function DetailsModal({ name, price, count, close }) {
                             <td>{price.toLocaleString()}</td>
                             <td>{count}</td>
                         </tr>
+                        
                     </tbody>
                 </table>
             </div>

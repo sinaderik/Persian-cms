@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import ErrorBox from '../ErrorBox/ErrorBox'
-import DeleteModal from '../DeleteModal/DeleteModal';
-import useFetch from '../../../hooks/useFetch'
+import Detail from '../Detail/Detail';
+
 import './Comments.css';
 
 export default function Comments() {
 
   const [allComments, setAllComments] = useState([])
+  const [showDetail, setShowDetail] = useState(false)
+  const [comment, setComment] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:3000/api/comments')
@@ -14,7 +15,15 @@ export default function Comments() {
       .then(data => setAllComments(data))
       .catch(error => console.log(error))
   }, []);
-  // console.log(allComments)
+
+  function hideDetail() {
+    setShowDetail(false)
+  }
+  function showCommentHandler(comment) {
+    setComment(comment)
+    setShowDetail(true)
+  }
+
   return (
 
     <div className='cms-main'>
@@ -35,7 +44,7 @@ export default function Comments() {
               <tr key={item.id}>
                 <td>{item.userID}</td>
                 <td>{item.productID}</td>
-                <td><button>مشاهده متن</button></td>
+                <td><button onClick={() => showCommentHandler(item.body)}>مشاهده متن</button></td>
                 <td>{item.data}</td>
                 <td>{item.hour}</td>
                 <td>
@@ -50,6 +59,7 @@ export default function Comments() {
 
         </tbody>
       </table>
+      {showDetail ? <Detail hide={hideDetail}><h3>{comment}</h3></Detail> : null}
       {/* <DeleteModal /> */}
     </div>
   )
