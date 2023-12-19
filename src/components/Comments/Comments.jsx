@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react'
+import DeleteModal from '../DeleteModal/DeleteModal'
 import Detail from '../Detail/Detail';
 
 import './Comments.css';
 
 export default function Comments() {
 
-  const [allComments, setAllComments] = useState([])
-  const [showDetail, setShowDetail] = useState(false)
-  const [comment, setComment] = useState('')
+  const [allComments, setAllComments] = useState([]);
+  const [showDetail, setShowDetail] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [comment, setComment] = useState('');
+  const [deleteId, setDeleteId] = useState(null)
 
   useEffect(() => {
+    getAllComments();
+  }, []);
+
+  function getAllComments() {
     fetch('http://localhost:3000/api/comments')
       .then(response => response.json())
       .then(data => setAllComments(data))
       .catch(error => console.log(error))
-  }, []);
-
+  }
   function hideDetail() {
     setShowDetail(false)
   }
@@ -23,6 +29,19 @@ export default function Comments() {
     setComment(comment)
     setShowDetail(true)
   }
+  function showDeleteHandler() {
+    setShowDeleteModal(false)
+  }
+  function deleteComment() {
+    fetch(`http://localhost:3000/api/comments/${deleteId}`, { method: 'DELETE' })
+      .then(response => response.json())
+      .then(response => {
+        getAllComments();
+        setShowDeleteModal(false);
+      })
+
+  }
+
 
   return (
 
@@ -48,7 +67,10 @@ export default function Comments() {
                 <td>{item.data}</td>
                 <td>{item.hour}</td>
                 <td>
-                  <button>حذف</button>
+                  <button onClick={() => {
+                    setShowDeleteModal(true)
+                    setDeleteId(item.id)
+                  }}>حذف</button>
                   <button>ویرایش</button>
                   <button>پاسخ</button>
                   <button>تایید</button>
@@ -60,6 +82,7 @@ export default function Comments() {
         </tbody>
       </table>
       {showDetail ? <Detail hide={hideDetail}><h3>{comment}</h3></Detail> : null}
+      {showDeleteModal ? <DeleteModal confirmed={deleteComment} rejected={showDeleteHandler} /> : null}
       {/* <DeleteModal /> */}
     </div>
   )
