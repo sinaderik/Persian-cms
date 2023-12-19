@@ -15,7 +15,11 @@
     visibility: hidden;
     transition: 0.4s;
 }
-
+.cms-main {
+    margin-top: 60px;
+    padding: 20px;
+    border-radius: 25px;
+}
 .modal-parent.active {
     opacity: 1;
     visibility: visible;
@@ -37,4 +41,18 @@
 .cms-table th,
 .cms-table td {
     padding: 20px;
+}
+
+.cms-table button {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.cms-table button:hover{
+    background-color: var(--hover);
+    transition: 0.5s;
 }
