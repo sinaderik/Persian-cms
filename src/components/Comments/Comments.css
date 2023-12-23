@@ -1,17 +1,28 @@
 .text-modal {
-    width: 400px;
-    padding: 25px;
-    background-color: var(--white);
-    line-height: 25px;
-    text-align: justify;
-  }
-  
+  width: 400px;
+  padding: 25px;
+  background-color: var(--white);
+  line-height: 25px;
+  text-align: justify;
+}
+
 .text-modal-close-btn {
-    width: 100%;
-    padding: 10px 0;
-    background-color: var(--blue);
-    color: var(--white);
-    margin-top: 20px;
-    font-size: 1.1rem;
-  }
-  
+  width: 100%;
+  padding: 10px 0;
+  background-color: var(--blue);
+  color: var(--white);
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.edit-textArea {
+  width: 400px;
+  min-height: 100px;
+  resize: vertical;
+  padding: 8px;
+  font-size: 18px;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 0.5rem auto;
+ 
+}

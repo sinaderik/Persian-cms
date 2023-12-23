@@ -56,3 +56,16 @@
     background-color: var(--hover);
     transition: 0.5s;
 }
+.mainButton{
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.mainButton:hover{
+    background-color: var(--hover);
+    transition: 0.5s;
+}

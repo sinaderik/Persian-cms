@@ -131,7 +131,7 @@ export default function ProductsTable({getAllData,allProducts }) {
                     ))}
                 </tbody>
             </table>
-            {showModal ? <DeleteModal confirmed={deleteConfirmed} rejected={deleteRejected} /> : null}
+            {showModal ? <DeleteModal confirmed={deleteConfirmed} rejected={deleteRejected} title="آیا از حذف اطمینان دارید؟" /> : null}
             {showDetailModal ? <DetailsModal name={productName} price={productPrice} count={productCount} close={closeDetailsModal} /> : null}
             {showEditModal ? <EditModal product={editProduct} submit={submitEditForm} close={closeEditForm}></EditModal> : null}
         </>

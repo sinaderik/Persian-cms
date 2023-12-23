@@ -1,4 +1,5 @@
 import React from 'react'
+import './Detail.css'
 import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Detail({hide,children}) {
