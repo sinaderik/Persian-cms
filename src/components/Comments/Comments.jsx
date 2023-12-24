@@ -9,7 +9,7 @@ export default function Comments() {
   const [showDetail, setShowDetail] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showConfirmedModal,setShowConfirmedModal]=useState(false)
+  const [showConfirmedModal, setShowConfirmedModal] = useState(false)
   const [comment, setComment] = useState('');
   const [commentBody, setCommentBody] = useState('')
   const [deleteId, setDeleteId] = useState(null);
@@ -53,7 +53,7 @@ export default function Comments() {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
-      body: JSON.stringify({ body:commentBody })
+      body: JSON.stringify({ body: commentBody })
     }).then((response) => {
       if (!response.ok) {
         alert('Something went wrong')
@@ -63,18 +63,25 @@ export default function Comments() {
     })
   }
 
-  function acceptComment(){
-    fetch(`http://localhost:3000/api/comments/accept/${editId}`, {
-        method: 'POST',
-    })
-    .then((response) => {
-      console.log(response)
-        if(!response.ok){
-            alert('Something went wrong')
-        }
-        getAllComments();
-        setShowConfirmedModal(false);
-    })
+  function acceptComment() {
+    setShowConfirmedModal(false);
+    alert('کامنت تایید شد')
+    // console.log(editId)
+    // fetch(`http://localhost:3000/api/comments/accept/${editId}`, {
+    //     method: 'POST',
+    // })
+    // .then(response=>{
+    //   response.json();
+    // })
+    // .then((response) => {
+    //   console.log(response)
+    //     if(!response.ok){
+    //         alert('Something went wrong')
+    //     }
+    //     getAllComments();
+    //     setShowConfirmedModal(false);
+    // })
+
 
   }
 
@@ -112,7 +119,7 @@ export default function Comments() {
                     setShowEditModal(true)
                   }}>ویرایش</button>
                   <button>پاسخ</button>
-                  <button onClick={()=>{
+                  <button onClick={() => {
                     setEditId(item.id)
                     setShowConfirmedModal(true)
                   }}>تایید</button>
@@ -132,11 +139,11 @@ export default function Comments() {
         </>
       </Detail> : null}
       {showDeleteModal ? <DeleteModal confirmed={deleteComment} rejected={showDeleteHandler} title={"آیا از حذف اطمینان دارید ؟"} /> : null}
-      
-      {showConfirmedModal?<DeleteModal confirmed={acceptComment} rejected={()=>setShowConfirmedModal(false)} title="اطمینان دارید ؟" />:null}
+
+      {showConfirmedModal ? <DeleteModal confirmed={acceptComment} rejected={() => setShowConfirmedModal(false)} title="اطمینان دارید ؟" /> : null}
 
       {/* <DeleteModal /> */}
-      
+
     </div>
   )
 }

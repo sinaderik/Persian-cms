@@ -20,6 +20,9 @@
     padding: 20px;
     border-radius: 25px;
 }
+.cms-title{
+    font-size: 2rem;
+}
 .modal-parent.active {
     opacity: 1;
     visibility: visible;
