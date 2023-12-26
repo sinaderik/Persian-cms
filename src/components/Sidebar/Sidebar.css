@@ -22,30 +22,35 @@
     margin-top: 20px;
 }
 
-.sidebar-links li {
+.sidebar-links a {
     position: relative;
     padding: 15px 20px;
 
 }
 
-.sidebar-links li a {
-    width: 100%;
+.sidebar-links a {
+    /* width: 100%; */
     color: var(--white);
     text-decoration: none;
     display: flex;
     justify-content: right;
     align-items: center;
     font-size: 1.3rem;
+    transition: 0.5s;
 
 }
 
-.sidebar-links li.active {
+.sidebar-links a.active {
     /* background-color: #391588; */
     background-color: var(--active);
     transition: 0.5s;
 }
-
-.sidebar-links li:first-child {
+.sidebar-links a:hover{
+    color: var(--white);
+    background-color: var(--active);
+    transition: 0.5s;
+}
+.sidebar-links a:first-child {
     margin-bottom: 20px;
 }
 

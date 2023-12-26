@@ -24,9 +24,25 @@ export default function Users() {
 
   function deleteUser() {
     console.log(userId)
-    console.log('user deleted')
-    setShowDeleteModal(false)
+    fetch(`http://localhost:3000/api/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then(response => {
+        if (!response.ok) {
+          console.log('something went wrong')
+        }
+        console.log(response)
+        getAllUsers();
+        setShowDeleteModal(false)
+      })
+      .catch(error => {
+        console.error('Error during DELETE request:', error);
+      });
+
   }
+
   return (
     <>
       {users.length <= 0 ? <ErrorBox message="هیچ کاربری یافت نشد" /> : null}
@@ -64,7 +80,7 @@ export default function Users() {
           </tbody>
         </table>
       </div>
-      {showDeleteModal ? <DeleteModal confirmed={deleteUser} rejected={()=>setShowDeleteModal(false)} title={'آیا از حذف کاربر اطمینان دارید ؟'} /> : null}
+      {showDeleteModal ? <DeleteModal confirmed={deleteUser} rejected={() => setShowDeleteModal(false)} title={'آیا از حذف کاربر اطمینان دارید ؟'} /> : null}
     </>
   );
 }
