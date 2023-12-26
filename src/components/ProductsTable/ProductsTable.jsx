@@ -101,9 +101,10 @@ export default function ProductsTable({getAllData,allProducts }) {
                     {allProducts.reverse().map((item, index) => (
                         <tr key={item.id} className='products-table-tr'>
                             <td>{index + 1}</td>
-                            <td>
+                            {/* <td>
+                                
                                 <img className='products-table-img' src={`/src/assets/${item.img}`} alt="oil" />
-                            </td>
+                            </td> */}
                             <td>{item.title}</td>
                             <td>{item.price.toLocaleString()} تومان</td>
                             <td>{item.count}</td>
